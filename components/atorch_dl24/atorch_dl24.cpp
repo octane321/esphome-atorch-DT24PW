@@ -27,6 +27,8 @@ static const uint8_t COMMAND_SUCCESS = 0x01;
 static const uint8_t COMMAND_FAILED = 0x02;
 static const uint8_t COMMAND_UNSUPPORTED = 0x03;
 
+static const uint8_t DT24PW_CHECKSUM = 0x23;
+
 uint8_t crc(const uint8_t data[], const uint16_t len) {
   uint8_t crc = 0;
 
@@ -207,7 +209,7 @@ void AtorchDL24::decode(const uint8_t *data, uint16_t length) {
 
   uint8_t computed_crc = crc(data, length - 1);
   uint8_t remote_crc = data[length - 1];
-  if (this->check_crc_ && computed_crc != remote_crc) {
+  if (this->check_crc_ && computed_crc != remote_crc && remote_crc != DT24PW_CHECKSUM) {
     ESP_LOGW(TAG, "CRC check failed (%02X != %02X). Skipping frame", computed_crc, remote_crc);
     ESP_LOGD(TAG, "Payload: %s", format_hex_pretty(data, length).c_str());
     return;
