@@ -1,7 +1,8 @@
 substitutions:
   name: battery-shunt
   #external_components_source: github://syssi/esphome-atorch-dl24@main    #orig repo
-  external_components_source: github://Foroxon/esphome-atorch-dl24@main   #DT24PW repo
+  #external_components_source: github://Foroxon/esphome-atorch-dl24@main   #DT24PW repo
+  external_components_source: github://octane321/esphome-atorch-DT24PW@main   #DT24PW personal repo
   dl24_mac_address: !secret dl24_mac_address
   project_version: 1.2.0
   device_description: "Monitor and control a Atorch meter via bluetooth"
@@ -44,7 +45,7 @@ wifi:
 captive_portal:
 
 ota:
-  password: "3f518568bbcd3e25212b5fdbb4ce8823"
+  password: !secret ota_password
 
 # Enable logging
 logger:
