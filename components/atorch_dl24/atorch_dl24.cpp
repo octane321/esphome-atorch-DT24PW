@@ -324,7 +324,7 @@ void AtorchDL24::decode_ac_and_dc_(const uint8_t *data, uint16_t length) {
   }
 
   // 0x00 0x25:            Temperature            37 °C
-  this->publish_state_(this->temperature_sensor_, (float) dl24_get_16bit(24));
+  this->publish_state_(this->temperature_sensor_, (float) dl24_get_16bit(22)); //octane321 24=ext. temp (Test1 22 / Test2 20)
 
   // 0x00 0x02:            Hour                   2 h
   // 0x21:                 Minute                 33 min
